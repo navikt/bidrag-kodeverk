@@ -6,6 +6,10 @@ metadata:
   labels:
     team: bidrag
 spec:
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
   azure:
     application:
       enabled: true
@@ -32,13 +36,13 @@ spec:
       {{/each}}
   liveness:
     path: /actuator/health
-    initialDelay: 20
+    initialDelay: 60
     timeout: 1
     periodSeconds: 5
     failureThreshold: 10
   readiness:
     path: /actuator/health
-    initialDelay: 20
+    initialDelay: 60
     timeout: 1
     periodSeconds: 5
     failureThreshold: 10
