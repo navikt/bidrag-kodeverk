@@ -1,4 +1,4 @@
-package no.nav.bidrag.template
+package no.nav.bidrag.kodeverk
 
 import StubUtils
 import com.github.tomakehurst.wiremock.WireMockServer
@@ -16,8 +16,8 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
-@ContextConfiguration(classes = [BidragTemplateLocal::class])
-@SpringBootTest(classes = [BidragTemplateLocal::class, StubUtils::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(classes = [BidragKodeverkLocal::class])
+@SpringBootTest(classes = [BidragKodeverkLocal::class, StubUtils::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 0)
 @ActiveProfiles("test")
 @EnableMockOAuth2Server
@@ -40,18 +40,15 @@ class SpringTestRunner {
     }
 
     private fun resetWiremockServers() {
-        applicationContext.getBeansOfType(WireMockServer::class.java)
+        applicationContext
+            .getBeansOfType(WireMockServer::class.java)
             .values
             .forEach(WireMockServer::resetRequests)
     }
 
-    fun rootUri(): String {
-        return LOCALHOST + port
-    }
+    fun rootUri(): String = LOCALHOST + port
 
-    protected fun getPort(): String {
-        return port.toString()
-    }
+    protected fun getPort(): String = port.toString()
 
     companion object {
         private const val LOCALHOST = "http://localhost:"

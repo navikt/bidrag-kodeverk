@@ -1,7 +1,11 @@
-name: Deploy to main
+name: Deploy to dev
 on:
-  pull_request:
-    types: [ ready_for_review, opened, synchronize ]
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+      - '!main'
+      - '!dependabot/**'
 
 jobs:
   build_and_deploy:
@@ -12,4 +16,4 @@ jobs:
     uses: navikt/bidrag-workflow/.github/workflows/deploy.yaml@main
     secrets: inherit
     with:
-      nais_variabler_filnavn: main.yaml
+      nais_variabler_filnavn: dev.yaml

@@ -1,4 +1,4 @@
-package no.nav.bidrag.template.config
+package no.nav.bidrag.kodeverk.config
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -18,8 +18,8 @@ import java.time.format.DateTimeFormatter
 @Import(RestOperationsAzure::class)
 class RestConfig {
     @Bean
-    fun jackson2ObjectMapperBuilder(): Jackson2ObjectMapperBuilder {
-        return Jackson2ObjectMapperBuilder()
+    fun jackson2ObjectMapperBuilder(): Jackson2ObjectMapperBuilder =
+        Jackson2ObjectMapperBuilder()
             .modules(
                 KotlinModule.Builder().build(),
                 JavaTimeModule()
@@ -28,10 +28,8 @@ class RestConfig {
                         // Denne trengs for å parse år over 9999 riktig.
                         YearMonthDeserializer(DateTimeFormatter.ofPattern("u-MM")),
                     ),
-            )
-            .failOnUnknownProperties(false)
+            ).failOnUnknownProperties(false)
             .serializationInclusion(JsonInclude.Include.NON_NULL)
-    }
 
     @Bean
     fun clientRequestObservationConvention(): ClientRequestObservationConvention = DefaultClientRequestObservationConvention()

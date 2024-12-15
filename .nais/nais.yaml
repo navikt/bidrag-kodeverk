@@ -17,6 +17,19 @@ spec:
   secureLogs:
     enabled: true
   image: {{ image }}
+  accessPolicy:
+    inbound:
+      rules:
+      {{#each azure_access_inbound}}
+          - application: {{this.application}}
+            namespace: {{this.namespace}}
+            cluster: {{this.cluster}}
+      {{/each}}
+    outbound:
+      external:
+      {{#each outbound-access-hosts}}
+          - host: {{this}}
+      {{/each}}
   liveness:
     path: /actuator/health
     initialDelay: 20
