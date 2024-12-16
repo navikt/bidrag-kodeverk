@@ -16,6 +16,6 @@ class BidragKodeverkLocal
 
 fun main(args: Array<String>) {
     val app = SpringApplication(BidragKodeverkLocal::class.java)
-    app.setAdditionalProfiles("local", "nais", "lokal-nais-secrets")
+    app.setAdditionalProfiles("local", "lokal-nais", "nais", "lokal-nais-secrets")
     app.run(*args)
 }

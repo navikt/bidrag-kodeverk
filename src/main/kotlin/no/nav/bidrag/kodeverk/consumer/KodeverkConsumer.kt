@@ -18,13 +18,13 @@ private val log = KotlinLogging.logger {}
 
 @Service
 class KodeverkConsumer(
-    @Value("\${KODEVERK_URL}") kodeverkUri: URI,
+    @Value("\${KODEVERK_URL}") val url: URI,
     @Value("\${NAIS_APP_NAME}:bidrag-commons") val appName: String,
     @Qualifier("azure") restTemplate: RestTemplate,
 ) : AbstractRestClient(restTemplate, "kodeverk-api") {
-    private val kodeverkUri =
+    private val kodeverkUri get() =
         UriComponentsBuilder
-            .fromUri(kodeverkUri)
+            .fromUri(url)
             .pathSegment("api", "v1", "kodeverk")
 
     @BrukerCacheable(KODEVERK_CACHE)
@@ -33,16 +33,17 @@ class KodeverkConsumer(
         val header = HttpHeaders()
         header.add("Nav-Call-Id", CorrelationId.fetchCorrelationIdForThread())
         header.add("Nav-Consumer-Id", appName)
-        return getForNonNullEntity(
+        return getForEntity(
             kodeverkUri
                 .pathSegment(
                     kodeverk,
-                    "kodeverk",
+                    "koder",
                     "betydninger",
                 ).queryParam("ekskluderUgyldige", "false")
                 .queryParam("spraak", "nb")
                 .build()
                 .toUri(),
-        )
+            header,
+        )!!
     }
 }
