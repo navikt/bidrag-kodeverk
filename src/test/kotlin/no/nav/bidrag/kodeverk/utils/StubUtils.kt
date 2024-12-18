@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.client.WireMock.aResponse
@@ -25,7 +26,7 @@ class StubUtils {
                 WireMock.get(urlMatching("/kodeverk/(.*)")).willReturn(
                     aClosedJsonResponse()
                         .withStatus(HttpStatus.OK.value())
-                        .withBody(ObjectMapper().writeValueAsString(response)),
+                        .withBody(ObjectMapper().findAndRegisterModules().registerKotlinModule().writeValueAsString(response)),
                 ),
             )
         } catch (e: JsonProcessingException) {

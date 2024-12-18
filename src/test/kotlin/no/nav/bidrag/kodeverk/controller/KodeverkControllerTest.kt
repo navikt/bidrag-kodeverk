@@ -15,11 +15,11 @@ class KodeverkControllerTest : SpringTestRunner() {
             HttpEntity(
                 Personident("22496818540"),
             )
-        stubUtils.stubKodeverkResponse(KodeverkKoderBetydningerResponse(emptyMap()))
+        stubUtils.stubKodeverkResponse(KodeverkKoderBetydningerResponse(mapOf("test" to listOf())))
 
         val response =
             httpHeaderTestRestTemplate
-                .getForEntity<KodeverkKoderBetydningerResponse>("${rootUri()}/kodeverk/test")
+                .getForEntity<no.nav.bidrag.kodeverk.consumer.KodeverkKoderBetydningerResponse>("${rootUri()}/kodeverk/test")
 
         response.statusCode shouldBe HttpStatus.OK
     }
