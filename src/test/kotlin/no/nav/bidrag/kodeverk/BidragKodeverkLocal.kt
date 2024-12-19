@@ -1,4 +1,4 @@
-package no.nav.bidrag.template
+package no.nav.bidrag.kodeverk
 
 import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
 import org.springframework.boot.SpringApplication
@@ -12,10 +12,10 @@ import org.springframework.test.context.ActiveProfiles
 @SpringBootApplication(exclude = [SecurityAutoConfiguration::class, ManagementWebSecurityAutoConfiguration::class])
 @EnableAspectJAutoProxy
 @EnableJwtTokenValidation(ignore = ["org.springframework", "org.springdoc"])
-class BidragTemplateLocal
+class BidragKodeverkLocal
 
 fun main(args: Array<String>) {
-    val app = SpringApplication(BidragTemplateLocal::class.java)
-    app.setAdditionalProfiles("local", "nais")
+    val app = SpringApplication(BidragKodeverkLocal::class.java)
+    app.setAdditionalProfiles("local", "lokal-nais", "nais", "lokal-nais-secrets")
     app.run(*args)
 }

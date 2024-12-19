@@ -1,4 +1,4 @@
-package no.nav.bidrag.template.config
+package no.nav.bidrag.kodeverk.config
 
 import com.github.benmanes.caffeine.cache.Caffeine
 import no.nav.bidrag.commons.cache.EnableUserCache
@@ -16,14 +16,14 @@ import org.springframework.context.annotation.Profile
 @EnableUserCache
 class CacheConfig {
     companion object {
-        const val PERSON_CACHE = "PERSON_CACHE"
+        const val KODEVERK_CACHE = "KODEVERK_CACHE"
     }
 
     @Bean
     fun cacheManager(): CacheManager {
         val caffeineCacheManager = CaffeineCacheManager()
         caffeineCacheManager.registerCustomCache(
-            PERSON_CACHE,
+            KODEVERK_CACHE,
             Caffeine.newBuilder().expireAfter(InvaliderCacheFørStartenAvArbeidsdag()).build(),
         )
         return caffeineCacheManager

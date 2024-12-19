@@ -1,4 +1,4 @@
-package no.nav.bidrag.template.aop
+package no.nav.bidrag.kodeverk.aop
 
 import no.nav.security.token.support.spring.validation.interceptor.JwtTokenUnauthorizedException
 import org.slf4j.LoggerFactory
@@ -30,7 +30,10 @@ class DefaultRestControllerAdvice {
     private fun getErrorMessage(exception: HttpStatusCodeException): String {
         val errorMessage = StringBuilder()
         errorMessage.append("Det skjedde en feil ved kall mot ekstern tjeneste: ")
-        exception.responseHeaders?.get(HttpHeaders.WARNING)?.firstOrNull()?.let { errorMessage.append(it) }
+        exception.responseHeaders
+            ?.get(HttpHeaders.WARNING)
+            ?.firstOrNull()
+            ?.let { errorMessage.append(it) }
         if (exception.statusText.isNotEmpty()) {
             errorMessage.append(" - ")
             errorMessage.append(exception.statusText)

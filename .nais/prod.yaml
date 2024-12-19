@@ -1,7 +1,7 @@
-name: bidrag-template-spring
+name: bidrag-kodeverk
 ingresses:
-  - https://bidrag-template-spring.intern.nav.no
+  - https://bidrag-kodeverk.intern.nav.no
 env:
-  BIDRAG_PERSON_URL: https://bidrag-person.prod-fss-pub.nais.io/bidrag-person
-  BIDRAG_PERSON_SCOPE: prod-fss.bidrag.bidrag-person-feature
+  KODEVERK_URL: https://kodeverk-api.nav.no
+  KODEVERK_SCOPE: prod-gcp.team-rocket.kodeverk-api
   JAVA_OPTS: -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp -XX:MaxRAMPercentage=80.0
