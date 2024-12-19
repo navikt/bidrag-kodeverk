@@ -19,7 +19,7 @@ class KodeverkControllerTest : SpringTestRunner() {
 
         val response =
             httpHeaderTestRestTemplate
-                .getForEntity<no.nav.bidrag.kodeverk.consumer.KodeverkKoderBetydningerResponse>("${rootUri()}/kodeverk/test")
+                .getForEntity<KodeverkKoderBetydningerResponse>("${rootUri()}/kodeverk/test")
 
         response.statusCode shouldBe HttpStatus.OK
     }

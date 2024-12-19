@@ -3,6 +3,7 @@ package no.nav.bidrag.kodeverk.consumer
 import io.github.oshai.kotlinlogging.KotlinLogging
 import no.nav.bidrag.commons.CorrelationId
 import no.nav.bidrag.commons.cache.BrukerCacheable
+import no.nav.bidrag.commons.service.KodeverkKoderBetydningerResponse
 import no.nav.bidrag.commons.web.client.AbstractRestClient
 import no.nav.bidrag.kodeverk.config.CacheConfig.Companion.KODEVERK_CACHE
 import org.springframework.beans.factory.annotation.Qualifier
@@ -12,24 +13,8 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 import java.net.URI
-import java.time.LocalDate
 
 private val log = KotlinLogging.logger {}
-
-data class KodeverkKoderBetydningerResponse(
-    val betydninger: Map<String, List<KodeverkBetydning>> = emptyMap(),
-)
-
-data class KodeverkBetydning(
-    val gyldigFra: LocalDate,
-    val gyldigTil: LocalDate,
-    val beskrivelser: Map<String, KodeverkBeskrivelse>,
-)
-
-data class KodeverkBeskrivelse(
-    val tekst: String,
-    val term: String,
-)
 
 @Service
 class KodeverkConsumer(
