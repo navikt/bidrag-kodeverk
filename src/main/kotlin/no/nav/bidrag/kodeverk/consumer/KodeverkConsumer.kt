@@ -39,7 +39,8 @@ class KodeverkConsumer(
                     kodeverk,
                     "koder",
                     "betydninger",
-                ).queryParam("ekskluderUgyldige", "false")
+                ).queryParam("inkluderUtkast", "false")
+                .queryParam("ekskluderUgyldige", "false")
                 .queryParam("spraak", "nb")
                 .build()
                 .toUri(),
