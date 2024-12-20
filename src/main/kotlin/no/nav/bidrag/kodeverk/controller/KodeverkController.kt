@@ -29,4 +29,7 @@ class KodeverkController(
     fun hentKodeverk(
         @PathVariable kodeverk: String,
     ): KodeverkKoderBetydningerResponse = kodeverKService.hentKodeverk(kodeverk)
+
+    @GetMapping("/internal/health/readiness")
+    fun health(): String = "OK"
 }
