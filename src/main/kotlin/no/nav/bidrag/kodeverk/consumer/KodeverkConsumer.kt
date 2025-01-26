@@ -6,6 +6,7 @@ import no.nav.bidrag.commons.cache.BrukerCacheable
 import no.nav.bidrag.commons.service.KodeverkKoderBetydningerResponse
 import no.nav.bidrag.commons.web.client.AbstractRestClient
 import no.nav.bidrag.kodeverk.config.CacheConfig.Companion.KODEVERK_CACHE
+import no.nav.bidrag.kodeverk.config.CacheConfig.Companion.KODEVERK_HIERARKI_CACHE
 import no.nav.bidrag.kodeverk.controller.dto.KodeverkHierarkiResponse
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
@@ -53,7 +54,7 @@ class KodeverkConsumer(
         )!!
     }
 
-    @BrukerCacheable(KODEVERK_CACHE)
+    @BrukerCacheable(KODEVERK_HIERARKI_CACHE)
     fun hentKodeverHierarki(kodeverk: String): KodeverkHierarkiResponse {
         log.info("Henter hierarki for $kodeverk")
         val header = HttpHeaders()
@@ -65,7 +66,7 @@ class KodeverkConsumer(
                     kodeverk,
                     "noder",
                 ).queryParam("inkluderUtkast", "false")
-                .queryParam("ekskluderUgyldige", "false")
+                .queryParam("ekskluderUgyldige", "true")
                 .queryParam("spraak", "nb")
                 .build()
                 .toUri(),

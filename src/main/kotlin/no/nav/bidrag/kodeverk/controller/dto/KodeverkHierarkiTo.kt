@@ -6,7 +6,7 @@ data class KodeverkHierarkiResponse(
 )
 
 data class Hierarkinode(
-    var kode: String? = null,
-    var termer: MutableMap<String, String> = mutableMapOf(),
-    var undernoder: MutableMap<String, Hierarkinode> = mutableMapOf(),
+    val kode: String? = null,
+    val termer: MutableMap<String, String> = mutableMapOf(),
+    val undernoder: MutableMap<String, Hierarkinode> = mutableMapOf(),
 )
