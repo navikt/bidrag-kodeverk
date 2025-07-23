@@ -21,5 +21,8 @@ azure_access_inbound:
   - application: bidrag-behandling
     namespace: bidrag
     cluster: prod-gcp
+  - application: bidrag-samhandler
+    namespace: bidrag
+    cluster: prod-gcp
 outbound-access-hosts:
   - kodeverk-api.nav.no
