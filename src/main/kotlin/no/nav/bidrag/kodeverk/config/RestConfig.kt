@@ -1,5 +1,6 @@
 package no.nav.bidrag.kodeverk.config
 
+import no.nav.bidrag.commons.security.service.ClientConfigurationWellknownProperties
 import no.nav.bidrag.commons.web.config.RestOperationsAzure
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -8,7 +9,7 @@ import org.springframework.http.client.observation.ClientRequestObservationConve
 import org.springframework.http.client.observation.DefaultClientRequestObservationConvention
 
 @Configuration
-@Import(RestOperationsAzure::class)
+@Import(RestOperationsAzure::class, ClientConfigurationWellknownProperties::class)
 class RestConfig {
     @Bean
     fun clientRequestObservationConvention(): ClientRequestObservationConvention = DefaultClientRequestObservationConvention()
