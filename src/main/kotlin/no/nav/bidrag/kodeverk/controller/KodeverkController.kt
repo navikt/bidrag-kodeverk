@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import no.nav.bidrag.commons.service.KodeverkKoderBetydningerResponse
+import no.nav.bidrag.kodeverk.controller.dto.KodeverkHierarkiResponse
 import no.nav.bidrag.kodeverk.service.KodeverkService
 import no.nav.security.token.support.core.api.Unprotected
 import org.springframework.web.bind.annotation.GetMapping
@@ -29,6 +30,20 @@ class KodeverkController(
     fun hentKodeverk(
         @PathVariable kodeverk: String,
     ): KodeverkKoderBetydningerResponse = kodeverKService.hentKodeverk(kodeverk)
+
+    @GetMapping("/hierarki/{kodeverk}")
+    @Operation(
+        description = "Henter kodeverk hierarki (proxy)",
+        security = [SecurityRequirement(name = "bearer-key")],
+    )
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "Hentet kodeverk"),
+        ],
+    )
+    fun hentKodeverkHierarki(
+        @PathVariable kodeverk: String,
+    ): KodeverkHierarkiResponse = kodeverKService.hentKodeverkHiearki(kodeverk)
 
     @GetMapping("/internal/health/readiness")
     fun health(): String = "OK"
