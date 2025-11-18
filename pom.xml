@@ -24,7 +24,7 @@
 		<mockk.version>1.14.6</mockk.version>
 		<kotlin-logging-jvm.version>7.0.13</kotlin-logging-jvm.version>
 		<jackson-module-kotlin.version>2.20.1</jackson-module-kotlin.version>
-		<ktlint.version>1.4.1</ktlint.version>
+		<ktlint.version>1.7.1</ktlint.version>
 	</properties>
 	<repositories>
 		<repository>
