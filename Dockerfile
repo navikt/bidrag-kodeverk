@@ -1,10 +1,24 @@
-FROM ghcr.io/navikt/baseimages/temurin:21
+FROM ubuntu:24.04 AS locales
+RUN apt-get update && apt-get install -y locales
+RUN locale-gen nb_NO.UTF-8 && \
+    update-locale LANG=nb_NO.UTF-8 LANGUAGE="nb_NO:nb" LC_ALL=nb_NO.UTF-8
+
+FROM gcr.io/distroless/java21
 LABEL maintainer="Team Bidrag" \
       email="bidrag@nav.no"
+
+COPY --from=busybox:1.35.0-glibc /bin/sh /bin/sh
+COPY --from=busybox:1.35.0-glibc /bin/printenv /bin/printenv
+
+COPY --from=locales /usr/lib/locale/ /usr/lib/locale/
+
+WORKDIR /app
 
 COPY ./target/bidrag-kodeverk-*.jar app.jar
 
 ENV JAVA_OPTS="-XX:MaxRAMPercentage=75"
 ENV SPRING_PROFILES_ACTIVE=nais
+ENV LANG=nb_NO.UTF-8 LANGUAGE='nb_NO:nb' LC_ALL=nb_NO.UTF-8 TZ="Europe/Oslo"
+
 
 EXPOSE 8080
