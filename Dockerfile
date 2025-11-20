@@ -14,7 +14,7 @@ COPY --from=locales /usr/lib/locale/ /usr/lib/locale/
 
 WORKDIR /app
 
-COPY ./target/bidrag-kodeverk-*.jar app.jar
+COPY ./target/app.jar app.jar
 
 ENV JAVA_OPTS="-XX:MaxRAMPercentage=75"
 ENV SPRING_PROFILES_ACTIVE=nais

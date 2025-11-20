@@ -11,7 +11,6 @@
 	<groupId>no.nav</groupId>
 	<artifactId>bidrag-kodeverk</artifactId>
 	<version>1.0.0</version>
-	<name>bidrag-kodeverk</name>
 	<properties>
 		<java.version>21</java.version>
 		<bidrag-felles.version>2025.11.17.130704</bidrag-felles.version>
