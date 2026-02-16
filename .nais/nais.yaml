@@ -18,8 +18,6 @@ spec:
         extra:
           - "NAVident"
           - "azp_name"
-  secureLogs:
-    enabled: true
   image: {{ image }}
   accessPolicy:
     inbound:
