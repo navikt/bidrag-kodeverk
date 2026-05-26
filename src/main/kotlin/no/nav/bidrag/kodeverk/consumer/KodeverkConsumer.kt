@@ -1,6 +1,5 @@
 package no.nav.bidrag.kodeverk.consumer
 
-import io.github.oshai.kotlinlogging.KotlinLogging
 import no.nav.bidrag.commons.CorrelationId
 import no.nav.bidrag.commons.cache.BrukerCacheable
 import no.nav.bidrag.commons.service.KodeverkKoderBetydningerResponse
@@ -14,12 +13,10 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 import java.net.URI
 
-private val log = KotlinLogging.logger {}
-
 @Service
 class KodeverkConsumer(
-    @Value("\${KODEVERK_URL}") val url: URI,
-    @Value("\${NAIS_APP_NAME}:bidrag-commons") val appName: String,
+    @param:Value($$"${KODEVERK_URL}") val url: URI,
+    @param:Value($$"${NAIS_APP_NAME}:bidrag-commons") val appName: String,
     @Qualifier("azure") restTemplate: RestTemplate,
 ) : AbstractRestClient(restTemplate, "kodeverk-api") {
     private val kodeverkUri get() =
