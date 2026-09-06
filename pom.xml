@@ -20,7 +20,7 @@
 		<token-support.version>6.0.8</token-support.version>
 		<kotest.version>6.0.5</kotest.version>
 		<mockk.version>1.14.9</mockk.version>
-		<kotlin-logging-jvm.version>8.0.02</kotlin-logging-jvm.version>
+		<kotlin-logging-jvm.version>8.0.4</kotlin-logging-jvm.version>
 		<ktlint.version>1.8.0</ktlint.version>
 		<wiremock-spring-boot.version>4.2.1</wiremock-spring-boot.version>
 		<wiremock-standalone.version>3.13.2</wiremock-standalone.version>
