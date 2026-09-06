@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Profile
 class CacheConfig {
     companion object {
         const val KODEVERK_CACHE = "KODEVERK_CACHE"
+        const val KODEVERK_HIERARKI_CACHE = "KODEVERK_HIERARKI_CACHE"
     }
 
     @Bean
@@ -24,6 +25,10 @@ class CacheConfig {
         val caffeineCacheManager = CaffeineCacheManager()
         caffeineCacheManager.registerCustomCache(
             KODEVERK_CACHE,
+            Caffeine.newBuilder().expireAfter(InvaliderCacheFørStartenAvArbeidsdag()).build(),
+        )
+        caffeineCacheManager.registerCustomCache(
+            KODEVERK_HIERARKI_CACHE,
             Caffeine.newBuilder().expireAfter(InvaliderCacheFørStartenAvArbeidsdag()).build(),
         )
         return caffeineCacheManager
