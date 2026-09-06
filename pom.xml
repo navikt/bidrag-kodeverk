@@ -18,7 +18,7 @@
 		<logback-encoder.version>9.0</logback-encoder.version>
 		<springdoc-openapi-ui.version>3.0.3</springdoc-openapi-ui.version>
 		<token-support.version>6.0.8</token-support.version>
-		<kotest.version>6.0.5</kotest.version>
+		<kotest.version>6.1.11</kotest.version>
 		<mockk.version>1.14.9</mockk.version>
 		<kotlin-logging-jvm.version>8.0.02</kotlin-logging-jvm.version>
 		<ktlint.version>1.8.0</ktlint.version>
